@@ -6,19 +6,27 @@ module RubyGame
     end
 
     def move_left
-      @absciss = @absciss- 3
+      if @absciss > 0
+        @absciss = @absciss- 3
+      end
     end
 
     def move_right
-      @absciss = @absciss + 3
+      if @absciss < @instance.width
+        @absciss = @absciss + 3
+      end
     end
 
     def move_up
-      @ordinate = @ordinate - 3
+      if @ordinate > 0
+        @ordinate = @ordinate - 3
+      end
     end
 
     def move_down
-      @ordinate = @ordinate + 3
+      if @ordinate < @instance.height
+        @ordinate = @ordinate + 3
+      end
     end
   end
 end

@@ -10,7 +10,7 @@ module RubyGame
     end
 
     def draw
-      @sprite.draw(@absciss, @ordinate, 0)
+      @sprite.draw_rot(@absciss, @ordinate, 0, 0)
     end
   end
 end
