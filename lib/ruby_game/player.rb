@@ -4,10 +4,10 @@ module RubyGame
     attr_accessor :instance, :absciss, :ordinate, :sprite
 
     def initialize(instance,absciss,ordinate)
-      @absciss = absciss
+      @absciss  = absciss
       @ordinate = ordinate
       @instance = instance
-      @sprite = Gosu::Image.new(@instance, File.join(IMAGES_PATH, 'player.png'),true)
+      @sprite   = Gosu::Image.new(@instance, File.join(IMAGES_PATH, 'player.png'),true)
     end
 
     def draw
