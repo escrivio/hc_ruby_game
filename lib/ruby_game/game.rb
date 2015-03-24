@@ -5,7 +5,7 @@ module RubyGame
     def initialize
       super(640, 480, false)
       @background_image=Gosu::Image.new(self, File.join(IMAGES_PATH, 'background.png'),true)
-      @player= Player.new(self,590,420)
+      @player= Player.new(self,320,200)
     end
 
     def draw
