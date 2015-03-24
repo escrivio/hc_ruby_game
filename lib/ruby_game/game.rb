@@ -4,13 +4,14 @@ module RubyGame
   class Game < Gosu::Window
     def initialize
       super(640, 480, false)
-      @background_image=Gosu::Image.new(self, File.join(IMAGES_PATH, 'background.png'),true)
-      @player= Player.new(self,320,200)
+      @background_image = Gosu::Image.new(self, File.join(IMAGES_PATH, 'background.png'),true)
+      @player = Player.new(self,320,200)
+      @emerald = Ruby.new(self,60,80)
     end
 
     def draw
       @background_image.draw(0, 0, 0)
-      @player.draw
+      [@player, @emerald].each {|object| object.draw}
     end
     def start!
       self.show

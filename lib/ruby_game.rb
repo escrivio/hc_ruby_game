@@ -1,6 +1,8 @@
 require "gosu"
 require_relative "ruby_game/game"
+require_relative "ruby_game/sprite"
 require_relative "ruby_game/player"
+require_relative "ruby_game/ruby"
 
 module RubyGame
   # puts __FILE__
