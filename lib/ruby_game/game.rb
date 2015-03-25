@@ -8,20 +8,25 @@ module RubyGame
 
     def draw
       @background_image.draw(0, 0, 0)
-      [@player, @ruby, @monster].each {|object| object.draw}
+      ([@player, @ruby] + @monsters).each {|object| object.draw}
       @font.draw("You won!", 200, 240, 2, 1.0, 1.0, 0xffffff00) if @state == :win
-      @font.draw("You lose!", 200, 240, 2, 1.0, 1.0, 0xffffff00) if @state == :lost
+      @font.draw("You lose!", 200, 240, 2, 1.0, 1.0, 0xffff0000) if @state == :lost
     end
 
     def update
       if @state == :run
+
         @player.move_left if button_down?(Gosu::Button::KbLeft)
         @player.move_right if button_down?(Gosu::Button::KbRight)
         @player.move_up if button_down?(Gosu::Button::KbUp)
         @player.move_down if button_down?(Gosu::Button::KbDown)
-        @monster.follow(@player)
+
+        @monsters.each do |monster|
+          monster.follow(@player)
+          @state = :lost if monster.touch?(@player)
+        end
+
         @state = :win if @player.touch?(@ruby)
-        @state = :lost if @monster.touch?(@player)
       end
     end
 
@@ -42,8 +47,16 @@ module RubyGame
     end
 
     def monster(absciss,ordinate)
-      @monster = RubyGame::Monster.new(absciss,ordinate)
-      @monster.init_image(self)
+      monster = RubyGame::Monster.new(absciss,ordinate)
+      monster.init_image(self)
+      monster
+    end
+
+    def monsters(nombre)
+      @monsters = []
+      nombre.times {
+        @monsters << self.monster(rand(10..630),rand(10..470))
+      }
     end
   end
 end
