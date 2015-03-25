@@ -3,29 +3,30 @@ module RubyGame
   class Player < Sprite
     def initialize (instance,absciss,ordinate,motif="player.png")
       super
+      @velocity = 3
     end
 
     def move_left
       if @absciss > 0
-        @absciss = @absciss- 3
+        @absciss = @absciss- @velocity
       end
     end
 
     def move_right
       if @absciss < @instance.width
-        @absciss = @absciss + 3
+        @absciss = @absciss + @velocity
       end
     end
 
     def move_up
       if @ordinate > 0
-        @ordinate = @ordinate - 3
+        @ordinate = @ordinate - @velocity
       end
     end
 
     def move_down
       if @ordinate < @instance.height
-        @ordinate = @ordinate + 3
+        @ordinate = @ordinate + @velocity
       end
     end
   end
