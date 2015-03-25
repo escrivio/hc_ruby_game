@@ -10,11 +10,11 @@ module RubyGame
     end
 
     def draw
-      @sprite.draw_rot(@absciss, @ordinate, 0, 0)
+      @image.draw_rot(@absciss, @ordinate, 0, 0)
     end
 
     def init_image(window)
-      @sprite = Gosu::Image.new(window, File.join(IMAGES_PATH, @image_name),true)
+      @image = Gosu::Image.new(window, File.join(IMAGES_PATH, @image_name),true)
       @instance = window
     end
 
