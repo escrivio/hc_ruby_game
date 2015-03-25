@@ -32,7 +32,9 @@ module RubyGame
 
     def start!(&block)
       @state = :run
-      block.call(self)
+      if block_given?
+        block.call(self)
+      end
       self.show
     end
 

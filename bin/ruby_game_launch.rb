@@ -2,7 +2,6 @@ require_relative '../lib/ruby_game'
 
 player_coords = [rand(10..630), rand(10..470)]
 ruby_coords = [rand(10..630), rand(10..470)]
-monster_coords = [rand(10..630), rand(10..470)]
 
 game = RubyGame::Game.new
 
