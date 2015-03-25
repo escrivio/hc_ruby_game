@@ -3,6 +3,7 @@ require_relative "ruby_game/game"
 require_relative "ruby_game/sprite"
 require_relative "ruby_game/player"
 require_relative "ruby_game/ruby"
+require_relative "ruby_game/version"
 
 module RubyGame
   # puts __FILE__
