@@ -1,7 +1,7 @@
 module RubyGame
 
   class Player < Sprite
-    def initialize (instance,absciss,ordinate,motif="player.png")
+    def initialize (absciss,ordinate,image_name="player.png")
       super
       @velocity = 3
     end
