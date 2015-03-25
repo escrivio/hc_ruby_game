@@ -6,27 +6,27 @@ module RubyGame
       @velocity = 3
     end
 
-    def move_left
+    def move_left (velocity = @velocity)
       if @absciss > 0
-        @absciss = @absciss- @velocity
+        @absciss -= @velocity
       end
     end
 
     def move_right
       if @absciss < @instance.width
-        @absciss = @absciss + @velocity
+        @absciss += @velocity
       end
     end
 
     def move_up
       if @ordinate > 0
-        @ordinate = @ordinate - @velocity
+        @ordinate -= @velocity
       end
     end
 
     def move_down
       if @ordinate < @instance.height
-        @ordinate = @ordinate + @velocity
+        @ordinate += @velocity
       end
     end
   end
