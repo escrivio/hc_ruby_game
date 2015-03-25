@@ -30,10 +30,18 @@ module RubyGame
       end
     end
 
-    def start!
+    def start!(&block)
       @state = :run
-      yield(self)
+      block.call(self)
       self.show
+    end
+
+    # def restart!
+    #   start!
+    # end
+
+    def button_down(id)
+      self.restart! if id == Gosu::Button::KbR
     end
 
     def ruby(absciss, ordinate)

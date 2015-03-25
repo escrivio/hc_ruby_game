@@ -21,6 +21,5 @@ module RubyGame
     def touch?(item)
       Math.hypot(item.absciss - @absciss, item.ordinate - @ordinate) <= 32
     end
-
   end
 end
