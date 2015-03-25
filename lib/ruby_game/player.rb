@@ -1,9 +1,10 @@
 module RubyGame
 
   class Player < Sprite
+
     def initialize (absciss,ordinate,image_name="player.png")
       super
-      @velocity = 3
+      @velocity = 1
     end
 
     def move_left (velocity = @velocity)
@@ -28,6 +29,10 @@ module RubyGame
       if @ordinate < @instance.height
         @ordinate += @velocity
       end
+    end
+
+    def touch?(ruby)
+      @absciss == ruby.absciss and @ordinate == ruby.ordinate
     end
   end
 end

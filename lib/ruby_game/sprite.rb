@@ -13,6 +13,7 @@ module RubyGame
 
     def init_image(window)
       @sprite = Gosu::Image.new(window, File.join(IMAGES_PATH, @image_name),true)
+      @instance = window
     end
   end
 end
