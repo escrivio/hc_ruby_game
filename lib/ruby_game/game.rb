@@ -35,7 +35,7 @@ module RubyGame
       if block_given?                 # Teste si la méthode start! est passé avec un block (do |g|)
         @game_state = block           # On sauvegarde l'état du jeu dans une variable d'instance pour la réemployer
       end
-      @game_state.call(self)          # On remplace le yield(self) par un call
+      @game_state.call(self)          # On remplace le yield(self) par un call sur un pointeur
       self.show if block_given?       # Sur Windows, la méthode show appelée plusieurs fois ne fonctionne pas correctement
     end
 
