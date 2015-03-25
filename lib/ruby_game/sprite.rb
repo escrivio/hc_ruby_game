@@ -1,6 +1,8 @@
 module RubyGame
   class Sprite
 
+    attr_reader :absciss, :ordinate
+
     def initialize(absciss,ordinate,image_name)
       @absciss  = absciss
       @ordinate = ordinate

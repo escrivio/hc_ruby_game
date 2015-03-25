@@ -4,7 +4,7 @@ module RubyGame
 
     def initialize (absciss,ordinate,image_name="player.png")
       super
-      @velocity = 1
+      @velocity = 2
     end
 
     def move_left (velocity = @velocity)
