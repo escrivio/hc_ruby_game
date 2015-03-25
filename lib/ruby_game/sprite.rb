@@ -17,5 +17,10 @@ module RubyGame
       @sprite = Gosu::Image.new(window, File.join(IMAGES_PATH, @image_name),true)
       @instance = window
     end
+
+    def touch?(item)
+      Math.hypot(item.absciss - @absciss, item.ordinate - @ordinate) <= 32
+    end
+
   end
 end

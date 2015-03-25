@@ -30,9 +30,5 @@ module RubyGame
         @ordinate += @velocity
       end
     end
-
-    def touch?(ruby)
-      Math.hypot(ruby.absciss - @absciss, ruby.ordinate - @ordinate) <= 32
-    end
   end
 end
