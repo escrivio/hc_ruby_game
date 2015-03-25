@@ -8,10 +8,8 @@ module RubyGame
     end
 
     def follow(player)
-      @absciss +=1 if player.absciss > @absciss
-      @absciss -=1 if player.absciss < @absciss
-      @ordinate +=1 if player.ordinate > @ordinate
-      @ordinate -=1 if player.ordinate < @ordinate
+      @absciss += (player.absciss <=> @absciss) * @velocity
+      @ordinate += (player.ordinate <=> @ordinate) * @velocity
     end
 
     def touch?(player)
