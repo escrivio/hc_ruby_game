@@ -1,13 +1,9 @@
 module RubyGame
   class Game < Gosu::Window
-    def initialize(player, ruby)
+    def initialize
       super(640, 480, false)
       @background_image = Gosu::Image.new(self, File.join(IMAGES_PATH, 'background.png'),true)
       @font = Gosu::Font.new(self, Gosu::default_font_name, 60)
-      ruby.init_image(self)
-      player.init_image(self)
-      @player= player
-      @ruby = ruby
     end
 
     def draw
@@ -28,7 +24,18 @@ module RubyGame
 
     def start!
       @state = :run
+      yield(self)
       self.show
+    end
+
+    def ruby(absciss, ordinate)
+      @ruby = RubyGame::Ruby.new(absciss,ordinate)
+      @ruby.init_image(self)
+    end
+
+    def player(absciss,ordinate)
+      @player = RubyGame::Player.new(absciss,ordinate)
+      @player.init_image(self)
     end
   end
 end
