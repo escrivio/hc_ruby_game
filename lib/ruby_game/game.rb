@@ -23,7 +23,6 @@ module RubyGame
         @player.move_down if button_down?(Gosu::Button::KbDown)
         @monsters.each do |monster|
           motion = monster.motion # On ne peut pas appeler la lambda directement, il faut la charger au préalable.
-
           monster.public_send(motion) # Ici on utilise une méthode de métaprogrammation public_send pour être agnostique sur le nom de la méthdoe publique appelée. L'accessor monster.target permet d'éviter de préciser le paramètre @player.
           @state = :game_over if monster.touch?(@player)
         end
@@ -41,10 +40,7 @@ module RubyGame
       @game_state.call(self)          # On remplace le yield(self) par un call sur un pointeur
       self.show if block_given?       # Sur Windows, la méthode show appelée plusieurs fois ne fonctionne pas correctement
     end
-
-    def restart!
-      start!
-    end
+    alias_method :restart!, :start!   # Suppression de la méthode restart! et remplacement par un alias
 
     def button_down(id)
       self.close if id == Gosu::Button::KbEscape
