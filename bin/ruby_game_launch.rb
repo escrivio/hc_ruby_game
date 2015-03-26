@@ -8,5 +8,6 @@ game = RubyGame::Game.new
 game.start! do |g|
   g.ruby(ruby_coords[0],ruby_coords[1])
   g.player(player_coords[0],player_coords[1])
-  g.monsters(3)
+  g.monsters(2, lambda { |m,p| m.follow(p)})  # On définit une lambda pour personnaliser le comportement des monstres puis on va dans game.rb
+  #  g.monsters(1, lambda { |m,p| m.move_up})
 end

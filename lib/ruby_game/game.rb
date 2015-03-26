@@ -1,5 +1,7 @@
 module RubyGame
   class Game < Gosu::Window
+
+
     def initialize
       super(640, 480, false)
       @background_image = Gosu::Image.new(self, File.join(IMAGES_PATH, 'background.png'),true)
@@ -20,7 +22,8 @@ module RubyGame
         @player.move_up if button_down?(Gosu::Button::KbUp)
         @player.move_down if button_down?(Gosu::Button::KbDown)
         @monsters.each do |monster|
-          monster.follow(@player)
+          motion = monster.motion # On ne peut pas appeler la lambda directement, il faut la charger au préalable.
+          motion.call(monster,@player) # On appelle la lambda en précisant les paramètres attendus, ici l'instance de l'objet monster et les information de l'objet player
           @state = :game_over if monster.touch?(@player)
         end
 
@@ -56,16 +59,17 @@ module RubyGame
       @player.init_image(self)
     end
 
-    def monster(absciss,ordinate)
+    def monster(absciss,ordinate,motion) # On récupère la lambda motion : il faut donc un getter/setter dans l'objet monster. On va dans monster.rb
       monster = RubyGame::Monster.new(absciss,ordinate)
       monster.init_image(self)
+      monster.motion = motion # On provisionne la valeur de la variable d'instance @motion de l'objet monster avec la lambda
       monster
     end
 
-    def monsters(nombre)
+    def monsters(nombre,motion) # On récupère la lambda décrivant le mouvement du monstre
       @monsters = []
       nombre.times {
-        @monsters << self.monster(rand(10..630),rand(10..470))
+        @monsters << self.monster(rand(10..630),rand(10..470),motion) # On l'ajoute à la méthode monster de game pour la fournir au futur objet
       }
     end
   end
