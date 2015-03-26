@@ -1,5 +1,5 @@
 module RubyGame
-  module Moveable
+  module Habilities
     def move_left (velocity = @velocity)
       if @absciss > 0
         @absciss -= @velocity
