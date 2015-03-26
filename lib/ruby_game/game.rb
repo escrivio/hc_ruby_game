@@ -32,6 +32,7 @@ module RubyGame
     end
 
     def start!(&block)                # Je déclare un block to proc
+      @monsters = []
       @state = :run                   # Etat running
       if block_given?                 # Teste si la méthode start! est passé avec un block (do |g|)
         @game_state = block           # On sauvegarde l'état du jeu dans une variable d'instance pour la réemployer
@@ -67,7 +68,6 @@ module RubyGame
     end
 
     def monsters(nombre,motion) # On récupère la lambda décrivant le mouvement du monstre
-      @monsters = []
       nombre.times {
         @monsters << self.monster(rand(10..630),rand(10..470),motion) # On l'ajoute à la méthode monster de game pour la fournir au futur objet
       }
