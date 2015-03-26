@@ -23,7 +23,7 @@ module RubyGame
         @player.move_down if button_down?(Gosu::Button::KbDown)
         @monsters.each do |monster|
           motion = monster.motion # On ne peut pas appeler la lambda directement, il faut la charger au préalable.
-          motion.call(monster,@player) # On appelle la lambda en précisant les paramètres attendus, ici l'instance de l'objet monster et les information de l'objet player
+          monster.public_send(motion, @player) # Ici on utilise une méthode de métaprogrammation public_send pour être agnostique sur le nom de la méthdoe publique appelée.
           @state = :game_over if monster.touch?(@player)
         end
 
@@ -67,9 +67,9 @@ module RubyGame
       monster
     end
 
-    def monsters(nombre,motion) # On récupère la lambda décrivant le mouvement du monstre
-      nombre.times {
-        @monsters << self.monster(rand(10..630),rand(10..470),motion) # On l'ajoute à la méthode monster de game pour la fournir au futur objet
+    def monsters(monsters_params_hash) # On récupère la lambda décrivant le mouvement du monstre par le biais du hash
+      monsters_params_hash[:number].times {
+        @monsters << self.monster(rand(10..630),rand(10..470),monsters_params_hash[:action]) # On l'ajoute à la méthode monster de game pour la fournir au futur objet
       }
     end
   end
