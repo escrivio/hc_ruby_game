@@ -1,13 +1,10 @@
 require_relative '../lib/ruby_game'
 
-player_coords = [rand(10..630), rand(10..470)]
-ruby_coords = [rand(10..630), rand(10..470)]
-
 game = RubyGame::Game.new
 
 game.start! do |g|
-  g.ruby(ruby_coords[0],ruby_coords[1])
-  g.player(player_coords[0],player_coords[1])
-  g.monsters(number: 5, action: :follow) # Equivaut à notation g.monsters({:number => 5, :action => :follow})
-  #g.monsters(1, lambda {|m,p| m.move_up})
+  g.ruby(rand(10..630), rand(10..470))
+  g.player(rand(10..630), rand(10..470))
+  g.monsters(number: 4, action: :follow) # Equivaut à notation g.monsters({:number => 5, :action => :follow})
+  #g.monsters(number: 2, action: :move_up) # Equivaut à notation g.monsters({:number => 2, :action => :move_up})
 end
