@@ -37,7 +37,7 @@ module RubyGame
       if block_given?                 # Teste si la méthode start! est passé avec un block (do |g|)
         @game_state = block           # On sauvegarde l'état du jeu dans une variable d'instance pour la réemployer
       end
-      @game_state.call(self)          # On remplace le yield(self) par un call sur un pointeur
+      self.instance_eval(&@game_state) # On transforme une Proc en Block et ce bloc sera appelé dans le contexte de l'instance_eval
       self.show if block_given?       # Sur Windows, la méthode show appelée plusieurs fois ne fonctionne pas correctement
       ap DateTime.new(1582,10,4,23) + 1.hour
     end
