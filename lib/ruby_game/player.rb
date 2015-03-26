@@ -1,6 +1,6 @@
 module RubyGame
   class Player < Sprite
-    include Moveable
+    include Habilities
     def initialize (absciss,ordinate,image_name="player.png")
       super
       @velocity = 2
