@@ -10,20 +10,18 @@ module RubyGame
       @background_image.draw(0, 0, 0)
       ([@player, @ruby] + @monsters).each {|object| object.draw}
       @font.draw("You won!", 200, 240, 2, 1.0, 1.0, 0xffffff00) if @state == :win
-      @font.draw("You lose!", 200, 240, 2, 1.0, 1.0, 0xffff0000) if @state == :lost
+      @font.draw("You lose!", 200, 240, 2, 1.0, 1.0, 0xffff0000) if @state == :game_over
     end
 
     def update
       if @state == :run
-
         @player.move_left if button_down?(Gosu::Button::KbLeft)
         @player.move_right if button_down?(Gosu::Button::KbRight)
         @player.move_up if button_down?(Gosu::Button::KbUp)
         @player.move_down if button_down?(Gosu::Button::KbDown)
-
         @monsters.each do |monster|
           monster.follow(@player)
-          @state = :lost if monster.touch?(@player)
+          @state = :game_over if monster.touch?(@player)
         end
 
         @state = :win if @player.touch?(@ruby)
@@ -43,12 +41,8 @@ module RubyGame
       start!
     end
 
-    def close!
-      exit()
-    end
-
     def button_down(id)
-      self.close! if id == Gosu::Button::KbEscape
+      self.close if id == Gosu::Button::KbEscape
       self.restart! if id == Gosu::Button::KbR
     end
 
