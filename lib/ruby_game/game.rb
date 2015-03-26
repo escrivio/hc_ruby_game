@@ -64,7 +64,7 @@ module RubyGame
     def monster(absciss,ordinate,motion) # On récupère la lambda motion : il faut donc un getter/setter dans l'objet monster. On va dans monster.rb
       monster = RubyGame::Monster.new(absciss,ordinate)
       monster.init_image(self)
-      monster.player = @player # Création et provisioning d'un accessor pour la variable @player (car seulement utilisée par monster.follow())
+      monster.target = @player # Création et provisioning d'un accessor pour la variable @player (car seulement utilisée par monster.follow())
       monster.motion = motion # On provisionne la valeur de la variable d'instance @motion de l'objet monster avec la lambda
       monster
     end
