@@ -1,5 +1,7 @@
 require "gosu"
 require "awesome_print"
+require "active_support/time"
+
 require_relative "ruby_game/game"
 require_relative "ruby_game/habilities"
 require_relative "ruby_game/sprite"

@@ -39,6 +39,7 @@ module RubyGame
       end
       @game_state.call(self)          # On remplace le yield(self) par un call sur un pointeur
       self.show if block_given?       # Sur Windows, la méthode show appelée plusieurs fois ne fonctionne pas correctement
+      ap DateTime.new(1582,10,4,23) + 1.hour
     end
     alias_method :restart!, :start!   # Suppression de la méthode restart! et remplacement par un alias
 
