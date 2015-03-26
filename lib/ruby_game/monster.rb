@@ -3,16 +3,15 @@ module RubyGame
   class Monster < Sprite
     include Habilities
 
-    attr_accessor :motion # Création d'un accessor (getter + setter) du nom de motion afin de fournir la lambda dans une variable d'instance et de rendre cette variable disponible
-
+    attr_accessor :motion, :player # Création d'accessors (getter + setter) du nom de motion et player
     def initialize(absciss,ordinate,image_name="ghost1.png")
       super
       @velocity = 1
     end
 
-    def follow(player)
-      @absciss += (player.absciss <=> @absciss) * @velocity
-      @ordinate += (player.ordinate <=> @ordinate) * @velocity
+    def follow
+      @absciss += (@player.absciss <=> @absciss) * @velocity
+      @ordinate += (@player.ordinate <=> @ordinate) * @velocity
     end
 
     def move_up

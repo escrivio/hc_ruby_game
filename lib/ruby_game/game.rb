@@ -23,7 +23,8 @@ module RubyGame
         @player.move_down if button_down?(Gosu::Button::KbDown)
         @monsters.each do |monster|
           motion = monster.motion # On ne peut pas appeler la lambda directement, il faut la charger au préalable.
-          monster.public_send(motion, @player) # Ici on utilise une méthode de métaprogrammation public_send pour être agnostique sur le nom de la méthdoe publique appelée.
+
+          monster.public_send(motion) # Ici on utilise une méthode de métaprogrammation public_send pour être agnostique sur le nom de la méthdoe publique appelée. L'accessor monster.target permet d'éviter de préciser le paramètre @player.
           @state = :game_over if monster.touch?(@player)
         end
 
@@ -63,6 +64,7 @@ module RubyGame
     def monster(absciss,ordinate,motion) # On récupère la lambda motion : il faut donc un getter/setter dans l'objet monster. On va dans monster.rb
       monster = RubyGame::Monster.new(absciss,ordinate)
       monster.init_image(self)
+      monster.player = @player # Création et provisioning d'un accessor pour la variable @player (car seulement utilisée par monster.follow())
       monster.motion = motion # On provisionne la valeur de la variable d'instance @motion de l'objet monster avec la lambda
       monster
     end
